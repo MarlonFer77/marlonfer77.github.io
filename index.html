@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Portfólio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="toggle-theme" id="btn-toggle" onclick="toggleTheme()">Dark</button>
+    <header>
+      <div class="container">
+        <h1>Marlon Ferreira</h1>
+        <nav>
+          <ul id="menu">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
+    <section id="inicio">
+      <div class="container">
+        <img src="images/eu2.jpeg" alt="Sua foto" class="foto-perfil" />
+        <h2>Olá! Eu sou Marlon</h2>
+        <p>Desenvolvedor Java em busca de oportunidade profissional na área de tecnologia.</p>
+      </div>
+    </section>
+  
+    <section id="sobre">
+      <div class="container">
+        <h2>Sobre mim</h2>
+        <p>
+          Sou um desenvolvedor Java com foco em back-end. Estudo Java, Spring Boot, banco de dados Oracle e desenvolvimento de APIs REST. Tenho também noções de HTML, CSS, JavaScript e Angular para construção de interfaces simples e funcionais.
+        </p>
+      </div>
+    </section>
+  
+    <section id="habilidades">
+      <div class="container">
+        <h2>Habilidades</h2>
+        <ul>
+          <li>Java (JDK 17)</li>
+          <li>Spring Boot</li>
+          <li>Angular</li>
+          <li>JPA / Hibernate</li>
+          <li>REST APIs</li>
+          <li>Banco de Dados Oracle / PostgreSQL</li>
+          <li>HTML, CSS, JavaScript</li>
+          <li>Versionamento com Git</li>
+        </ul>
+      </div>
+    </section>
+  
+    <section id="projetos">
+      <div class="container">
+        <h2>Projetos</h2>
+        <div class="projetos">
+          <div class="projeto">
+            <h3>API de Cadastro de Funcionários</h3>
+            <p>API REST desenvolvida em Java com Spring Boot e Angular, conectada a um banco MySQL. Permite cadastrar, listar, editar e excluir funcionários.</p>
+            <a href="https://github.com/MarlonFer77/Services-Project" target="_blank">Ver no GitHub</a>
+          </div>
+          <div class="projeto">
+            <h3>O bom e velho Jogo da Cobrinha</h3>
+            <p>Aplicação com back-end em Java. Um jogo onde uma cobra se move em um tabuleiro e come maçãs.</p>
+            <a href="https://github.com/MarlonFer77/snakeman" target="_blank">Ver no GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section id="contato">
+      <div class="container">
+        <h2>Contato</h2>
+        <form action="https://formsubmit.co/dev.marlonfer77@gmail.com" method="POST">
+            <input type="text" name="name" placeholder="Seu nome" required>
+            <input type="email" name="email" placeholder="Seu e-mail" required>
+            <textarea name="message" placeholder="Sua mensagem" required></textarea>
+            <button type="submit">Enviar</button>
+          
+            <input type="hidden" name="_captcha" value="false">
+
+          </form>
+          
+        <p id="mensagem-enviada" style="display:none;">Mensagem enviada com sucesso!</p>
+      </div>
+    </section>
+  
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Seu Nome. Todos os direitos reservados. | <a href="https://github.com/MarlonFer77" target="_blank" style="color: #fff; text-decoration: underline;">GitHub</a></p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
