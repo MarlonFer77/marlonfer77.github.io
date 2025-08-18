@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Marlon Ferreira | Full-Stack Developer</title>
+    <meta name="description" content="Portfólio pessoal de Marlon Ferreira, um desenvolvedor Full-Stack especialista em Java, Angular, Node e Oracle.">
+    <meta name="author" content="Marlon Ferreira">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/">
+    <meta property="og:title" content="Marlon Ferreira | Full-Stack Developer">
+    <meta property="og:description" content="Explore meus projetos e habilidades em desenvolvimento de software.">
+    <meta property="og:image" content="https://picsum.photos/seed/og/1200/630">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://example.com/">
+    <meta property="twitter:title" content="Marlon Ferreira | Full-Stack Developer">
+    <meta property="twitter:description" content="Explore meus projetos e habilidades em desenvolvimento de software.">
+    <meta property="twitter:image" content="https://picsum.photos/seed/og/1200/630">
+
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F8F9FA">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <a href="#hero" class="header__logo">M.F.</a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a href="#about" class="nav__link">Sobre</a></li>
+                    <li><a href="#projects" class="nav__link">Projetos</a></li>
+                    <li><a href="#skills" class="nav__link">Habilidades</a></li>
+                    <li><a href="#contact" class="nav__link">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header__actions">
+                <button type="button" id="theme-toggle" class="theme-toggle" title="Alterar tema" aria-live="polite" aria-pressed="false">
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.803 17.803a.75.75 0 01-1.06 0l-1.59-1.591a.75.75 0 111.06-1.06l1.59 1.59a.75.75 0 010 1.06zM12 21.75a.75.75 0 01-.75-.75v-2.25a.75.75 0 011.5 0V21a.75.75 0 01-.75.75zM5.197 17.803a.75.75 0 010-1.06l1.59-1.59a.75.75 0 011.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.106 5.197a.75.75 0 011.06 0l1.59 1.591a.75.75 0 01-1.06 1.06l-1.59-1.59a.75.75 0 010-1.06z"/></svg>
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-3.833 2.067-7.17 5.162-8.942a.75.75 0 01.819.162z" clip-rule="evenodd"/></svg>
+                </button>
+                <button type="button" id="menu-toggle" class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-list">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero section">
+            <div class="container hero__container">
+                <div class="hero__text">
+                    <h1 class="hero__title">Marlon Ferreira</h1>
+                    <p class="hero__subtitle">Full-Stack Developer (Java | Angular | Node | Flutter | Python)</p>
+                    <a href="#contact" class="btn btn--primary">Contact me</a>
+                </div>
+                <div class="hero__avatar">
+                    <img src="assets/eu.jpg" 
+                         alt="Avatar de Marlon Ferreira" 
+                         width="200" height="200" 
+                         loading="lazy" decoding="async"
+                         class="hero__img">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about section">
+            <div class="container">
+                <h2 class="section__title">Sobre Mim</h2>
+                <p class="section__description">Desenvolvedor focado em criar soluções robustas e escaláveis. Com experiência sólida no ecossistema enterprise, busco combinar performance e usabilidade para entregar produtos de alta qualidade.</p>
+                <div class="chips">
+                    <span class="chip">Java</span>
+                    <span class="chip">Spring Boot</span>
+                    <span class="chip">Angular</span>
+                    <span class="chip">Node.js</span>
+                    <span class="chip">TypeScript</span>
+                    <span class="chip">Oracle DB</span>
+                    <span class="chip">Docker</span>
+                    <span class="chip">AWS</span>
+                    <span class="chip">Flutter</span>
+                    <span class="chip">Python</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects section">
+            <div class="container">
+                <h2 class="section__title">Projetos</h2>
+                <div class="projects__grid" id="projects-grid">
+                    </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills section">
+            <div class="container">
+                <h2 class="section__title">Habilidades</h2>
+                <div class="skills__grid">
+                    <div class="skill-item">
+                        <span class="skill-item__name">Java & Spring</span>
+                        <div class="skill-item__bar"><div class="skill-item__level" style="--skill-level: 95%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-item__name">Angular & TypeScript</span>
+                        <div class="skill-item__bar"><div class="skill-item__level" style="--skill-level: 90%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-item__name">Node.js & Express</span>
+                        <div class="skill-item__bar"><div class="skill-item__level" style="--skill-level: 80%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-item__name">HTML, CSS & JS</span>
+                        <div class="skill-item__bar"><div class="skill-item__level" style="--skill-level: 95%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-item__name">Bancos de Dados (SQL/NoSQL)</span>
+                        <div class="skill-item__bar"><div class="skill-item__level" style="--skill-level: 85%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-item__name">Cloud & DevOps</span>
+                        <div class="skill-item__bar"><div class="skill-item__level" style="--skill-level: 75%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-item__name">Flutter & Python</span>
+                        <div class="skill-item__bar"><div class="skill-item__level" style="--skill-level: 70%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact section">
+            <div class="container">
+                <h2 class="section__title">Contato</h2>
+                <p class="section__description">Vamos conversar! Envie uma mensagem e retornarei em breve.</p>
+                <form id="contact-form" class="contact__form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                        <p class="form-error" aria-live="polite"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__socials">
+                <a href="https://github.com/MarlonFer77" class="footer__social-link" aria-label="GitHub">GitHub</a>
+                <a href="https://www.linkedin.com/in/marlonferreira77/" class="footer__social-link" aria-label="LinkedIn">LinkedIn</a>
+                <a href="https://wa.me/5521989844071" class="footer__social-link" aria-label="WhatsApp">WhatsApp</a>
+            </div>
+            <p class="footer__copyright">&copy; 2025 Marlon Ferreira. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <button class="modal__close" aria-label="Fechar modal">&times;</button>
+            <img id="modal-image" src="" alt="" loading="lazy" class="modal__image">
+            <h3 id="modal-title" class="modal__title"></h3>
+            <div id="modal-stack" class="modal__stack chips"></div>
+            <p id="modal-description" class="modal__description"></p>
+            <div id="modal-links" class="modal__links"></div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>
