@@ -1,5 +1,6 @@
 import { useTexture } from '@react-three/drei'
-import { forwardRef, type ReactNode } from 'react'
+import { forwardRef, Suspense, type ReactNode } from 'react'
+import { RoomBoundary } from './RoomBoundary'
 import type { Group } from 'three'
 import { profile } from '../data/profile'
 import { skills } from '../data/skills'
@@ -71,7 +72,7 @@ export const PlaceholderRoom = forwardRef<Group>(function PlaceholderRoom(_props
       {/* porta-retrato */}
       <group name="porta_retrato" position={[-0.5, 0.88, -1.15]} rotation={[-0.12, 0.35, 0]}>
         <Box args={[0.17, 0.21, 0.02]} position={[0, 0, 0]} color="#e9e1d2" />
-        <Photo />
+        <RoomBoundary fallback={null}><Suspense fallback={null}><Photo /></Suspense></RoomBoundary>
       </group>
 
       {/* luminária */}

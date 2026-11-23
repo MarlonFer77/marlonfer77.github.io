@@ -15,6 +15,8 @@ export function useStackedLayout(): boolean {
 
   useEffect(() => {
     document.body.classList.toggle('layout--stacked', stacked)
+    document.documentElement.classList.toggle('layout--stacked', stacked)
+    window.dispatchEvent(new Event('resize'))
   }, [stacked])
 
   return stacked

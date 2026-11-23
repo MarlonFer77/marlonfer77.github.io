@@ -2,6 +2,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useRef, type MutableRefObject } from 'react'
 import { Vector3 } from 'three'
 import { poseAt, type Pose, type SectionId } from './sections'
+import { pointerToTilt } from './tilt'
 
 /** Aplica a pose da rolagem à câmera, com amortecimento e leve inclinação pelo mouse. */
 export function CameraRig({ scrollT, poses }: { scrollT: MutableRefObject<number>; poses: Record<SectionId, Pose> }) {
@@ -15,8 +16,8 @@ export function CameraRig({ scrollT, poses }: { scrollT: MutableRefObject<number
 
   useEffect(() => {
     const move = (e: PointerEvent) => {
-      mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1
-      mouse.current.y = (e.clientY / window.innerHeight) * 2 - 1
+      const tilt = pointerToTilt(e, window.innerWidth, window.innerHeight)
+      if (tilt) mouse.current = tilt
     }
     window.addEventListener('pointermove', move, { passive: true })
     return () => window.removeEventListener('pointermove', move)

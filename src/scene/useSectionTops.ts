@@ -1,13 +1,25 @@
 import { useEffect, useState } from 'react'
 import { SECTIONS } from './sections'
 
+/** Espaço reservado no topo ao rolar até uma seção (scroll-padding-top do <html>). */
+function scrollPadding(): number {
+  const v = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)
+  return Number.isFinite(v) ? v : 0
+}
+
+/** Rolagem em que cada seção fica no lugar onde o navegador a deixa ao navegar até ela. */
 function measure(): number[] {
-  return SECTIONS.map((id) => document.getElementById(id)?.offsetTop ?? 0)
+  const pad = scrollPadding()
+  return SECTIONS.map((id) => {
+    const el = document.getElementById(id)
+    if (!el) return 0
+    return Math.max(0, el.getBoundingClientRect().top + window.scrollY - pad)
+  })
 }
 
 const same = (a: number[], b: number[]) => a.length === b.length && a.every((v, i) => v === b[i])
 
-/** Topos (offsetTop) de cada seção; remede em resize e quando a altura da página muda. */
+/** Posição de rolagem de cada seção; remede em resize e quando a altura da página muda. */
 export function useSectionTops(): number[] {
   const [tops, setTops] = useState<number[]>([])
 

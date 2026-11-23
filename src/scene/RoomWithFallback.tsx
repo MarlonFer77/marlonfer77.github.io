@@ -1,20 +1,9 @@
-import { Component, Suspense, type ReactNode } from 'react'
+import { Suspense } from 'react'
+import { RoomBoundary } from './RoomBoundary'
 import { PlaceholderRoom } from './PlaceholderRoom'
 import { Room, type RoomInfo } from './Room'
 
-/** Se o modelo final falhar (404, arquivo corrompido), mantém o que estiver em fallback. */
-export class RoomBoundary extends Component<{ fallback: ReactNode; children: ReactNode }, { failed: boolean }> {
-  state = { failed: false }
-  static getDerivedStateFromError() {
-    return { failed: true }
-  }
-  componentDidCatch(error: unknown) {
-    console.warn('Sala 3D: usando a versão provisória.', error)
-  }
-  render() {
-    return this.state.failed ? this.props.fallback : this.props.children
-  }
-}
+export { RoomBoundary }
 
 /** Sala final do Blender; enquanto carrega ou se falhar, a sala provisória. */
 export function RoomWithFallback({ onReady }: { onReady: (info: RoomInfo | null) => void }) {

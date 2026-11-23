@@ -175,6 +175,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .monitor__title { padding: 8px 12px; font: 700 18px/1.2 var(--font-display); color: var(--text); background: #111a2b; }
 
 /* Tela estreita: cena fixa na metade de cima, conteúdo rola embaixo dela. */
+html.layout--stacked { scroll-padding-top: calc(45vh + 8px); }
 .layout--stacked .scene { position: sticky; top: 0; height: 45vh; z-index: 2; }
 .layout--stacked .content { margin-top: 0; }
 .layout--stacked .nav { background: var(--night-deep); }

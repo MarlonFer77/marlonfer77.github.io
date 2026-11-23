@@ -7,6 +7,7 @@ import { CameraRig } from './CameraRig'
 import { MonitorScreen } from './MonitorScreen'
 import { sectionForObject } from './interactive'
 import { sectionAt } from './sections'
+import { findLive } from './findLive'
 import { useSectionTops } from './useSectionTops'
 import { useScrollT } from './useScrollT'
 import { scrollToSection } from '../ui/scrollToSection'
@@ -16,7 +17,7 @@ import type { Mesh, MeshStandardMaterial } from 'three'
 function PhoneGlow({ scrollT }: { scrollT: React.MutableRefObject<number> }) {
   const ref = useRef<Mesh | null>(null)
   useFrame(({ scene }) => {
-    ref.current ??= scene.getObjectByName('celular_tela') as Mesh | null
+    ref.current = findLive(ref.current, scene, 'celular_tela')
     const m = ref.current?.material as MeshStandardMaterial | undefined
     if (m) m.emissiveIntensity += ((sectionAt(scrollT.current) === 'contato' ? 1.2 : 0.15) - m.emissiveIntensity) * 0.1
   })

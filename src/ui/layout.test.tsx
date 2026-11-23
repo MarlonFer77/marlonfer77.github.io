@@ -27,3 +27,9 @@ test('girar a tela troca o layout', () => {
   act(() => setWidth(375))
   expect(document.body).toHaveClass('layout--stacked')
 })
+
+test('no celular a página reserva no topo o espaço da cena, para o título da seção não ficar escondido', () => {
+  setWidth(375)
+  render(<App />)
+  expect(document.documentElement).toHaveClass('layout--stacked')
+})
