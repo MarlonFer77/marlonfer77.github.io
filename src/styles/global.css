@@ -77,7 +77,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ——— Início ——— */
 .section--hero { align-items: flex-end; padding-bottom: 14vh; }
-.panel--hero { background: none; border: 0; backdrop-filter: none; padding-left: 0; width: min(100%, 40rem); }
+.panel--hero { background: none; border: 0; backdrop-filter: none; padding-left: 0; width: min(100%, 40rem); pointer-events: none; }
+.panel--hero a { pointer-events: auto; }
 .hero__name {
   font-size: clamp(3rem, 2rem + 6vw, 6.5rem);
   font-weight: 800; letter-spacing: -0.045em; line-height: 0.92;
@@ -151,10 +152,30 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nav__links { gap: 12px; }
   .nav__links a { font-size: 0.85rem; }
   .section { min-height: auto; padding: 48px 16px; justify-content: stretch; }
-  .section--hero { min-height: 70vh; }
+  .section--hero { min-height: auto; padding-top: 32px; padding-bottom: 48px; }
+  .nav__brand { white-space: nowrap; }
   .panel, .panel--wide { width: 100%; }
   .project__story { grid-template-columns: 1fr; gap: 2px; }
   .project__story dd { margin-bottom: 8px; }
   .about { grid-template-columns: 1fr; }
   .contacts li { grid-template-columns: 1fr; gap: 0; }
 }
+
+/* ——— Cena 3D ——— */
+.scene { position: fixed; inset: 0; z-index: 0; }
+.scene canvas { touch-action: pan-y; }
+
+.monitor {
+  width: 460px; height: 260px; overflow: hidden;
+  background: #0d1320; border-radius: 4px;
+  display: grid; grid-template-rows: 1fr auto;
+}
+.monitor img { width: 100%; height: 100%; object-fit: cover; }
+.monitor__title { padding: 8px 12px; font: 700 18px/1.2 var(--font-display); color: var(--text); background: #111a2b; }
+
+/* Tela estreita: cena fixa na metade de cima, conteúdo rola embaixo dela. */
+.layout--stacked .scene { position: sticky; top: 0; height: 45vh; z-index: 2; }
+.layout--stacked .content { margin-top: 0; }
+.layout--stacked .nav { background: var(--night-deep); }
+
+@media (max-width: 480px) { .nav__brand { display: none; } .nav { justify-content: center; } }
