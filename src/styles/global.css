@@ -179,3 +179,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 .layout--stacked .nav { background: var(--night-deep); }
 
 @media (max-width: 480px) { .nav__brand { display: none; } .nav { justify-content: center; } }
+
+.scene--static img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+.scene--loading { background: radial-gradient(60% 50% at 65% 55%, rgba(242, 179, 91, 0.12), transparent 70%); }

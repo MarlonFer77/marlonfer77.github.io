@@ -1,7 +1,5 @@
 import type { Project } from './types'
 
-const PH = 'img/projetos/placeholder.svg'
-
 export const projects: Project[] = [
   // ——— Destaques ———
   {
@@ -24,7 +22,7 @@ export const projects: Project[] = [
     solucao: 'Mensageria corporativa em tempo real: conversas, grupos e canais por departamento, comunicados com confirmação de leitura, enquetes e login integrado ao diretório da empresa.',
     resultado: 'Canal oficial com presença online, notificações e trilha de auditoria, sem depender de ferramentas externas.',
     stack: ['Angular', 'Node.js', 'Express', 'Socket.IO', 'PostgreSQL', 'Prisma', 'Docker'],
-    imagens: [PH],
+    imagens: ['img/projetos/comunicacao-interna.webp'],
   },
   {
     id: 'despesas-fornecedores',
@@ -35,7 +33,7 @@ export const projects: Project[] = [
     solucao: 'Painel com consultas otimizadas no Oracle, comparativos por período e uma projeção que aplica reajustes encadeados (IPCA, percentuais) mostrando a memória de cálculo de cada mês.',
     resultado: 'Em produção, com mais de 270 testes automatizados entre back-end e front-end.',
     stack: ['Angular', 'Angular Material', 'Node.js', 'Oracle', 'TypeScript'],
-    imagens: [PH],
+    imagens: ['img/projetos/despesas-fornecedores.webp'],
   },
   {
     id: 'portal-intranet',
@@ -46,7 +44,7 @@ export const projects: Project[] = [
     solucao: 'Novo portal com busca, permissões por usuário, navegação por tarefa e entrada única (SSO) em sistemas satélites, como a geração de cartazes de preço.',
     resultado: 'Interface mobile-first que substitui o legado mantendo a integração com o ERP.',
     stack: ['React', 'Next.js', 'TypeScript', 'Prisma', 'Oracle', 'PostgreSQL', 'Tailwind CSS'],
-    imagens: [PH],
+    imagens: ['img/projetos/portal-intranet.webp'],
   },
   {
     id: 'uniclan',
@@ -57,7 +55,7 @@ export const projects: Project[] = [
     solucao: 'Rede social de estudos com comunidades (clãs), encontros, agenda e conversas em tempo real, mais painel para universidades e área administrativa.',
     resultado: 'Três aplicações no mesmo projeto, assinatura opcional com Stripe e testes de ponta a ponta com Playwright.',
     stack: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Stripe', 'React Query', 'Playwright'],
-    imagens: [PH],
+    imagens: ['img/projetos/uniclan.webp'],
   },
   {
     id: 'evaldren',
@@ -68,7 +66,7 @@ export const projects: Project[] = [
     solucao: 'Plataforma web com ficha digital, painel do mestre, combate, mundo e economia, sincronizados em tempo real entre os jogadores.',
     resultado: 'Entregue em 15 fases, com CI no GitHub Actions e backup diário automatizado.',
     stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Node.js', 'Socket.IO', 'Supabase'],
-    imagens: [PH],
+    imagens: ['img/projetos/evaldren.webp'],
   },
 
   // ——— Outros projetos ———
@@ -81,7 +79,7 @@ export const projects: Project[] = [
     solucao: 'Batalhas por turnos com combinação de elementos (fogo + vento = tempestade ígnea), árvore de habilidades, builds e multiplayer.',
     resultado: 'Mais de 19 versões publicadas, com APK gerado e assinado automaticamente no GitHub Actions.',
     stack: ['Flutter', 'Dart', 'GitHub Actions'],
-    imagens: [PH],
+    imagens: ['img/projetos/jogo-elementos.webp'],
     github: 'https://github.com/MarlonFer77/jogo-elementos',
   },
   {
@@ -93,7 +91,7 @@ export const projects: Project[] = [
     solucao: 'Plataforma com motor de workflow configurável, aprovações, equipes, SLA e indicadores; setores e regras são dados, não código.',
     resultado: 'Arquitetura em monorepo com contratos compartilhados entre API e front-end.',
     stack: ['Angular', 'Fastify', 'TypeScript', 'Drizzle', 'PostgreSQL', 'Zod'],
-    imagens: [PH],
+    imagens: ['img/projetos/gestao-operacional.webp'],
   },
   {
     id: 'balancas',
@@ -104,7 +102,7 @@ export const projects: Project[] = [
     solucao: 'Inventário, ordens de serviço, peças, garantias e fornecedores, com cálculo de viabilidade reparo × substituição.',
     resultado: 'Roda em Windows Server/IIS com migração de SQLite para PostgreSQL por um botão.',
     stack: ['Angular', 'Signals', 'Node.js', 'Express', 'Knex', 'PostgreSQL', 'Chart.js'],
-    imagens: [PH],
+    imagens: ['img/projetos/balancas.webp'],
   },
   {
     id: 'portal-rh',
@@ -115,7 +113,7 @@ export const projects: Project[] = [
     solucao: 'Portal com painéis e filtros por colaborador, motivo e função, ações em lote e carga agendada a partir do ERP de RH.',
     resultado: 'Em produção; migrado de SQLite para MySQL com conferência automática das respostas antes da virada.',
     stack: ['React', 'Next.js', 'TypeScript', 'Drizzle', 'MySQL'],
-    imagens: [PH],
+    imagens: ['img/projetos/portal-rh.webp'],
   },
   {
     id: 'inventario-ti',
@@ -126,7 +124,7 @@ export const projects: Project[] = [
     solucao: 'Sistema web com perfis por função, painel do motorista com leitura de código de barras e assinatura na tela, O.S. e etiquetas em PDF, mais app Android.',
     resultado: 'Rastreamento completo de cada equipamento, com comprovante assinado em cada movimentação.',
     stack: ['Python', 'Flask', 'Oracle', 'Capacitor'],
-    imagens: [PH],
+    imagens: ['img/projetos/inventario-ti.webp'],
   },
   {
     id: 'stitch',
@@ -149,7 +147,7 @@ export const projects: Project[] = [
     solucao: 'Portal cativo de Wi-Fi com planos, pagamento via PIX e painel administrativo.',
     resultado: 'Fluxo completo do cliente ao admin, com pagamento simulado e limite de tentativas no login.',
     stack: ['React', 'Vite', 'Python', 'FastAPI'],
-    imagens: [PH],
+    imagens: ['img/projetos/net-pix.webp'],
   },
   {
     id: 'vila-magica',
@@ -160,7 +158,7 @@ export const projects: Project[] = [
     solucao: 'Jogo 3D infantil em que cada brincadeira concluída libera um presente de verdade, com narração gravada.',
     resultado: 'APK de 6,4 MB que funciona offline, em tela cheia e sem pedir permissões.',
     stack: ['Three.js', 'JavaScript', 'Capacitor'],
-    imagens: [PH],
+    imagens: ['img/projetos/vila-magica.webp'],
   },
   {
     id: 'animacao-2d',
@@ -171,7 +169,7 @@ export const projects: Project[] = [
     solucao: 'Pipeline no Blender com Grease Pencil e scripts Python para montar cenas, trocar desenhos dos personagens e sincronizar bocas com as falas.',
     resultado: 'Episódios renderizados em 1080p com música e efeitos.',
     stack: ['Blender', 'Python', 'Grease Pencil'],
-    imagens: [PH],
+    imagens: ['img/projetos/animacao-2d.webp'],
   },
   {
     id: 'ferramentas-rh',
@@ -182,7 +180,7 @@ export const projects: Project[] = [
     solucao: 'Aplicativos Windows offline que geram as fórmulas a partir de planilhas e validam o arquivo posicional antes da importação.',
     resultado: 'Instaladores prontos para a equipe de RH, com testes automatizados.',
     stack: ['Python', 'Tkinter', 'openpyxl', 'PyInstaller'],
-    imagens: [PH],
+    imagens: ['img/projetos/ferramentas-rh.webp'],
   },
   {
     id: 'aniversariantes',
@@ -193,7 +191,7 @@ export const projects: Project[] = [
     solucao: 'Script que lê a planilha de colaboradores e desenha a lista no template, ajustando fonte e truncando nomes longos.',
     resultado: 'Arte do mês gerada em segundos, testada de meses vazios até listas com 64 pessoas.',
     stack: ['Python', 'Pandas', 'Pillow'],
-    imagens: [PH],
+    imagens: ['img/projetos/aniversariantes.webp'],
   },
   {
     id: 'bot-financas',
@@ -216,7 +214,7 @@ export const projects: Project[] = [
     solucao: 'Aplicativo que acompanha os jobs e avisa sobre falhas e atrasos.',
     resultado: 'Problemas detectados antes de afetar os usuários.',
     stack: ['Flutter', 'Node.js', 'Oracle'],
-    imagens: [PH],
+    imagens: ['img/projetos/monitor-jobs.webp'],
     github: 'https://github.com/MarlonFer77/jobs_monitor_rm',
   },
 ]

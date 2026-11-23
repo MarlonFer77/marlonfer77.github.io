@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { ActiveProjectProvider } from './ui/ActiveProjectContext'
 import { Nav } from './ui/Nav'
 import { Hero } from './ui/Hero'
@@ -8,26 +8,21 @@ import { AboutSection } from './ui/AboutSection'
 import { ContactSection } from './ui/ContactSection'
 import { Footer } from './ui/Footer'
 import { useStackedLayout } from './ui/useStackedLayout'
+import { detectQuality } from './scene/quality'
+import { StaticRoom } from './scene/StaticRoom'
 
 const SceneCanvas = lazy(() => import('./scene/SceneCanvas'))
 
-function hasWebGL(): boolean {
-  try {
-    const c = document.createElement('canvas')
-    return !!(c.getContext('webgl2') || c.getContext('webgl'))
-  } catch {
-    return false
-  }
-}
-
 export default function App() {
   useStackedLayout()
-  const webgl = hasWebGL()
+  const [quality] = useState(detectQuality)
   return (
     <ActiveProjectProvider>
-      {webgl && (
-        <Suspense fallback={null}>
-          <SceneCanvas />
+      {quality === 'static' ? (
+        <StaticRoom />
+      ) : (
+        <Suspense fallback={<div className="scene scene--loading" aria-hidden="true" />}>
+          <SceneCanvas dpr={quality === 'low' ? 1 : [1, 2]} />
         </Suspense>
       )}
       <Nav />
