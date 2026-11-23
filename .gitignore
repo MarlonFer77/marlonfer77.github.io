@@ -4,8 +4,6 @@ dist/
 *.blend1
 *.log
 .DS_Store
-.lixo-node_modules/
-.lixo-node_modules-2/
 .pnp.*
 .yarn/*
 !.yarn/releases
