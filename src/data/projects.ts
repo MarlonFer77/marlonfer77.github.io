@@ -6,7 +6,7 @@ export const projects: Project[] = [
   // ——— Destaques ———
   {
     id: 'people-analytics',
-    titulo: 'Insight RH · People Analytics',
+    titulo: 'Insight RH: People Analytics',
     tipo: 'pessoal',
     destaque: true,
     problema: 'O quadro de pessoal real era comparado ao orçado em planilhas, e indicadores como turnover saíam diferentes conforme quem fazia a conta.',
@@ -50,7 +50,7 @@ export const projects: Project[] = [
   },
   {
     id: 'uniclan',
-    titulo: 'UniClã · rede de estudos',
+    titulo: 'UniClã: rede de estudos',
     tipo: 'pessoal',
     destaque: true,
     problema: 'Universitários de instituições diferentes não têm um lugar para formar grupos de estudo, combinar encontros e trocar materiais.',
@@ -61,7 +61,7 @@ export const projects: Project[] = [
   },
   {
     id: 'evaldren',
-    titulo: 'Evaldren · plataforma de RPG de mesa',
+    titulo: 'Evaldren: plataforma de RPG de mesa',
     tipo: 'pessoal',
     destaque: true,
     problema: 'Sessões de RPG de mesa misturam fichas em papel, anotações do mestre e regras espalhadas.',
@@ -74,7 +74,7 @@ export const projects: Project[] = [
   // ——— Outros projetos ———
   {
     id: 'jogo-elementos',
-    titulo: 'Elementos · jogo mobile 1v1',
+    titulo: 'Elementos: jogo mobile 1v1',
     tipo: 'pessoal',
     destaque: false,
     problema: 'Queria um jogo rápido de estratégia para jogar com amigos em trajetos curtos.',
@@ -142,7 +142,7 @@ export const projects: Project[] = [
   },
   {
     id: 'net-pix',
-    titulo: 'NET PIX · hotspot com pagamento',
+    titulo: 'NET PIX: hotspot com pagamento',
     tipo: 'pessoal',
     destaque: false,
     problema: 'Compartilhar internet cobrando por tempo de uso exige controle manual de quem pagou.',
@@ -164,7 +164,7 @@ export const projects: Project[] = [
   },
   {
     id: 'animacao-2d',
-    titulo: 'Operação Salvar a Internet · animação 2D',
+    titulo: 'Operação Salvar a Internet: animação 2D',
     tipo: 'pessoal',
     destaque: false,
     problema: 'Produzir um curta de animação cartoon sem equipe de animadores.',
