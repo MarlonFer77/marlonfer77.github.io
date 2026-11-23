@@ -10,7 +10,8 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "check:anon": "node tools/anon/check.ts",
-    "anon:hash": "node tools/anon/hash-terms.ts"
+    "anon:hash": "node tools/anon/hash-terms.ts",
+    "check:glb": "node tools/check-glb.ts"
   },
   "packageManager": "yarn@4.19.0",
   "dependencies": {
@@ -21,6 +22,7 @@
     "three": "0.187.0"
   },
   "devDependencies": {
+    "@gltf-transform/core": "4",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^8.0.0",
     "@testing-library/react": "^16.3.3",

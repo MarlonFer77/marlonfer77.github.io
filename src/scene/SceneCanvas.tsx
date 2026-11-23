@@ -1,6 +1,8 @@
 import { Canvas, useFrame, type ThreeEvent } from '@react-three/fiber'
 import { Suspense, useCallback, useRef, useState } from 'react'
-import { PlaceholderRoom, PLACEHOLDER_POSES } from './PlaceholderRoom'
+import { PLACEHOLDER_POSES } from './PlaceholderRoom'
+import { RoomWithFallback } from './RoomWithFallback'
+import type { RoomInfo } from './Room'
 import { CameraRig } from './CameraRig'
 import { MonitorScreen } from './MonitorScreen'
 import { sectionForObject } from './interactive'
@@ -25,6 +27,7 @@ export default function SceneCanvas({ dpr = [1, 2] as number | [number, number] 
   const tops = useSectionTops()
   const scrollT = useScrollT(tops)
   const [hover, setHover] = useState(false)
+  const [room, setRoom] = useState<RoomInfo | null>(null)
 
   const onClick = useCallback((e: ThreeEvent<MouseEvent>) => {
     const s = sectionForObject(e.object)
@@ -43,11 +46,11 @@ export default function SceneCanvas({ dpr = [1, 2] as number | [number, number] 
           <directionalLight position={[3, 4, 2]} intensity={0.35} />
           <Suspense fallback={null}>
             <group onClick={onClick} onPointerOver={onOver} onPointerOut={() => setHover(false)}>
-              <PlaceholderRoom />
+              <RoomWithFallback onReady={setRoom} />
             </group>
-            <MonitorScreen />
+            <MonitorScreen position={room?.monitor} />
           </Suspense>
-          <CameraRig scrollT={scrollT} poses={PLACEHOLDER_POSES} />
+          <CameraRig scrollT={scrollT} poses={room?.poses ?? PLACEHOLDER_POSES} />
           <PhoneGlow scrollT={scrollT} />
       </Canvas>
     </div>

@@ -84,6 +84,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@gltf-transform/core@npm:4":
+  version: 4.5.1
+  resolution: "@gltf-transform/core@npm:4.5.1"
+  dependencies:
+    property-graph: "npm:^4.1.0"
+  checksum: 10c0/b131261482fbd8ee359eb692053e9ce212617d8d315229f0002ca3fc28052c86182f879749f7479ee53a87374ebc8e5f53506a21617a883ed7be1d6e2fdeccec
+  languageName: node
+  linkType: hard
+
 "@isaacs/fs-minipass@npm:^4.0.0":
   version: 4.0.1
   resolution: "@isaacs/fs-minipass@npm:4.0.1"
@@ -1344,6 +1353,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "portfolio-marlon@workspace:."
   dependencies:
+    "@gltf-transform/core": "npm:4"
     "@react-three/drei": "npm:10.7.9"
     "@react-three/fiber": "npm:9.8.2"
     "@testing-library/dom": "npm:^10.4.2"
@@ -1410,6 +1420,13 @@ __metadata:
     is-promise: "npm:^2.1.0"
     lie: "npm:^3.0.2"
   checksum: 10c0/110d273cbba2631c318762f02c159531f1e05e4af91080368b9d4c02b880824ae4c49a8ec7094c6434989ea2ee8de913b21c809279babeaf447fc90a682dcd7c
+  languageName: node
+  linkType: hard
+
+"property-graph@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "property-graph@npm:4.1.0"
+  checksum: 10c0/469e73dbc17ea07b251db9f8e837d246bb9317dde91000de8f3ad739627c4ee1d350a939f9d5558b51c49a35f0c0ae131b4b41f9e351b48fefa32dd3f3b02137
   languageName: node
   linkType: hard
 

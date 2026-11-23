@@ -129,8 +129,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ——— Habilidades: cada grupo é um volume da estante ——— */
 .skills { display: grid; gap: 16px; }
-.skill { display: grid; gap: 8px; padding-left: 16px; border-left: 6px solid var(--c); }
-.skill__name { font-size: 1.05rem; }
+.skill { display: grid; gap: 8px; }
+.skill__name { font-size: 1.05rem; display: flex; align-items: center; gap: 10px; }
+.skill__name::before { content: ''; width: 9px; height: 1.1em; border-radius: 2px; background: var(--c); }
 .skill .stack li { background: color-mix(in srgb, var(--c) 16%, transparent); color: var(--text); }
 
 /* ——— Sobre ——— */

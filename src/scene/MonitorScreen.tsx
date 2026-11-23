@@ -3,7 +3,7 @@ import { projects } from '../data/projects'
 import { useActiveProject } from '../ui/ActiveProjectContext'
 
 /** Tela do monitor: mostra o projeto selecionado na lista. Posição igual a monitor_tela. */
-export function MonitorScreen({ position = [0, 1.12, -1.29] as [number, number, number] }) {
+export function MonitorScreen({ position = [0, 1.12, -1.29] }: { position?: [number, number, number] }) {
   const { activeId } = useActiveProject()
   const p = projects.find((x) => x.id === activeId) ?? projects[0]
   return (
