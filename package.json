@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:anon": "node tools/anon/check.ts",
+    "anon:hash": "node tools/anon/hash-terms.ts"
   },
   "packageManager": "yarn@4.19.0",
   "dependencies": {
