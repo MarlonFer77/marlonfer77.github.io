@@ -21,8 +21,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-      - run: corepack enable
+          node-version: 26
+      - run: npm install -g yarn
       - run: yarn install --immutable
       - run: yarn check:anon
       - run: yarn test --run
