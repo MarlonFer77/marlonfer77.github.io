@@ -7,6 +7,7 @@ const SECTIONS = ['inicio', 'projetos', 'habilidades', 'sobre', 'contato']
 export const REQUIRED_NODES = [
   'monitor_tela', 'estante', 'celular', 'porta_retrato',
   ...SECTIONS.flatMap((s) => [`cam_${s}`, `alvo_${s}`]),
+  'cam_foco', 'alvo_foco',
 ]
 
 export async function checkGlb(path: string): Promise<{ bytes: number; missing: string[] }> {

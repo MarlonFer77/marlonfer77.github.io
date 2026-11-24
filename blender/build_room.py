@@ -23,6 +23,8 @@ POSES = {  # mesmas poses da sala provisória (three.js)
     'contato': ((0.05, 1.12, -0.15), (0.38, 0.8, -0.85)),
 }
 
+FOCO = ((0, 1.32, 0.55), (0, 1.32, -1.3))  # modo foco: de frente para o monitor
+
 
 def P(x, y, z):
     return Vector((x, -z, y))
@@ -180,8 +182,8 @@ def build():
     join('mesa', [tampo, gaveta] + pernas)
 
     # monitor
-    base = cyl('mon_base', 0.12, 0.015, (0, 0.772, -1.28), metal, 32)
-    haste = box('mon_haste', (0.05, 0.32, 0.04), (0, 0.93, -1.32), metal)
+    base = cyl('mon_base', 0.12, 0.015, (0, 0.772, -1.36), metal, 32)
+    haste = box('mon_haste', (0.05, 0.32, 0.04), (0, 0.93, -1.375), metal)
     corpo = box('mon_corpo', (0.98, 0.58, 0.035), (0, 1.12, -1.33), plast, bevel=0.008)
     join('monitor', [corpo, base, haste])
     bpy.ops.mesh.primitive_plane_add(size=1, location=P(0, 1.12, -1.31))
@@ -299,6 +301,8 @@ def build():
     l4.rotation_euler = (math.radians(35), 0, math.radians(40))
 
     # câmeras do site
+    empty('cam_foco', FOCO[0])
+    empty('alvo_foco', FOCO[1])
     for sec, (pos, alvo) in POSES.items():
         empty(f'cam_{sec}', pos)
         empty(f'alvo_{sec}', alvo)

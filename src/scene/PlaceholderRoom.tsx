@@ -19,6 +19,9 @@ export const PLACEHOLDER_POSES: Record<SectionId, Pose> = {
   contato: { position: [0.05, 1.12, -0.15], target: [0.38, 0.8, -0.85] },
 }
 
+/** Modo foco: de frente para o monitor, com espaço acima para o holograma. */
+export const PLACEHOLDER_FOCUS_POSE: Pose = { position: [0, 1.32, 0.55], target: [0, 1.32, -1.3] }
+
 const Box = ({ args, position, color, name, children }: {
   args: [number, number, number]; position: [number, number, number]; color: string; name?: string; children?: ReactNode
 }) => (
@@ -52,7 +55,7 @@ export const PlaceholderRoom = forwardRef<Group>(function PlaceholderRoom(_props
       {[-0.8, 0.8].map((x) => <Box key={x} args={[0.05, 0.72, 0.7]} position={[x, 0.36, -1.05]} color="#4f3724" />)}
 
       {/* monitor */}
-      <Box args={[0.06, 0.3, 0.06]} position={[0, 0.92, -1.3]} color="#2b3240" />
+      <Box args={[0.06, 0.3, 0.06]} position={[0, 0.92, -1.375]} color="#2b3240" />
       <Box args={[0.98, 0.58, 0.04]} position={[0, 1.12, -1.32]} color="#1d2330" />
       <mesh name="monitor_tela" position={[0, 1.12, -1.297]}>
         <planeGeometry args={[0.92, 0.52]} />
@@ -109,6 +112,8 @@ export const PlaceholderRoom = forwardRef<Group>(function PlaceholderRoom(_props
       </group>
 
       {/* empties de câmera, como o GLB terá */}
+      <object3D name="cam_foco" position={PLACEHOLDER_FOCUS_POSE.position} />
+      <object3D name="alvo_foco" position={PLACEHOLDER_FOCUS_POSE.target} />
       {Object.entries(PLACEHOLDER_POSES).map(([id, p]) => (
         <group key={id}>
           <object3D name={`cam_${id}`} position={p.position} />

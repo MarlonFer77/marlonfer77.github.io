@@ -21,3 +21,13 @@ export function readPoses(root: Object3D): Record<SectionId, Pose> {
   if (missing.length) throw new Error(`Cena sem os objetos de câmera: ${missing.join(', ')}`)
   return poses
 }
+
+/** Pose do modo foco: empties cam_foco e alvo_foco. */
+export function readFocusPose(root: Object3D): Pose {
+  root.updateWorldMatrix(true, true)
+  const cam = root.getObjectByName('cam_foco')
+  const alvo = root.getObjectByName('alvo_foco')
+  const missing = [!cam && 'cam_foco', !alvo && 'alvo_foco'].filter(Boolean)
+  if (missing.length) throw new Error(`Cena sem os objetos de câmera: ${missing.join(', ')}`)
+  return { position: world(cam!), target: world(alvo!) }
+}

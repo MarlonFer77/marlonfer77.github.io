@@ -60,3 +60,8 @@ test('aceita GLB exportado com texturas WebP (EXT_texture_webp)', async () => {
   const r = await checkGlb(file)
   expect(r.missing).toEqual([])
 })
+
+test('exige a pose de foco (cam_foco e alvo_foco)', async () => {
+  const r = await checkGlb(await glbWith(REQUIRED_NODES.filter((n) => !n.endsWith('_foco'))))
+  expect(r.missing).toEqual(expect.arrayContaining(['cam_foco', 'alvo_foco']))
+})
