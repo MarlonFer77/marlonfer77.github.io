@@ -1,11 +1,13 @@
 import { Canvas, useFrame, type ThreeEvent } from '@react-three/fiber'
 import { Suspense, useCallback, useRef, useState } from 'react'
-import { PLACEHOLDER_POSES } from './PlaceholderRoom'
+import { PLACEHOLDER_FOCUS_POSE, PLACEHOLDER_POSES } from './PlaceholderRoom'
 import { RoomWithFallback } from './RoomWithFallback'
 import type { RoomInfo } from './Room'
 import { CameraRig } from './CameraRig'
 import { MonitorScreen } from './MonitorScreen'
-import { sectionForObject } from './interactive'
+import { interactiveName, resolveSceneClick, sectionForObject } from './interactive'
+import { useFocus } from '../ui/FocusContext'
+import type { SceneClick } from './interactive'
 import { sectionAt } from './sections'
 import { findLive } from './findLive'
 import { useSectionTops } from './useSectionTops'
@@ -29,16 +31,30 @@ export default function SceneCanvas({ dpr = [1, 2] as number | [number, number] 
   const scrollT = useScrollT(tops)
   const [hover, setHover] = useState(false)
   const [room, setRoom] = useState<RoomInfo | null>(null)
+  const htmlLayer = useRef<HTMLDivElement>(null)
 
+  const focus = useFocus()
+  const act = useCallback((c: SceneClick) => {
+    if (!c) return
+    if (c.type === 'enter') focus.enterFocus()
+    else if (c.type === 'exit') focus.exitFocus()
+    else if (c.exit) { focus.exitFocus(); setTimeout(() => scrollToSection(c.section), 0) }
+    else scrollToSection(c.section)
+  }, [focus])
   const onClick = useCallback((e: ThreeEvent<MouseEvent>) => {
-    const s = sectionForObject(e.object)
-    if (s) { e.stopPropagation(); scrollToSection(s) }
-  }, [])
+    e.stopPropagation()
+    act(resolveSceneClick(interactiveName(e.object), focus.mode))
+  }, [act, focus.mode])
   const onOver = useCallback((e: ThreeEvent<PointerEvent>) => setHover(sectionForObject(e.object) !== null), [])
 
   return (
     <div className="scene" style={{ cursor: hover ? 'pointer' : undefined }}>
-      <Canvas dpr={dpr} camera={{ fov: 42, near: 0.05, far: 50 }} onPointerMissed={() => setHover(false)}>
+      <Canvas dpr={dpr} camera={{ fov: 42, near: 0.05, far: 50 }} onPointerMissed={(e) => {
+        setHover(false)
+        // cliques nos ícones/holograma (HTML dentro da cena) não contam como "vazio"
+        if ((e.target as Element | null)?.closest?.('.desktop, .hologram')) return
+        act(resolveSceneClick(null, focus.mode))
+      }}>
           <color attach="background" args={['#0f1626']} />
           <fog attach="fog" args={['#0f1626', 4, 11]} />
           <ambientLight intensity={0.35} />
@@ -49,11 +65,12 @@ export default function SceneCanvas({ dpr = [1, 2] as number | [number, number] 
             <group onClick={onClick} onPointerOver={onOver} onPointerOut={() => setHover(false)}>
               <RoomWithFallback onReady={setRoom} />
             </group>
-            <MonitorScreen position={room?.monitor} />
+            <MonitorScreen position={room?.monitor} portal={htmlLayer} />
           </Suspense>
-          <CameraRig scrollT={scrollT} poses={room?.poses ?? PLACEHOLDER_POSES} />
+          <CameraRig scrollT={scrollT} poses={room?.poses ?? PLACEHOLDER_POSES} mode={focus.mode} foco={room?.foco ?? PLACEHOLDER_FOCUS_POSE} />
           <PhoneGlow scrollT={scrollT} />
       </Canvas>
+      <div ref={htmlLayer} className="scene__html" />
     </div>
   )
 }

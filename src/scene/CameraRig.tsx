@@ -1,11 +1,14 @@
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useRef, type MutableRefObject } from 'react'
 import { Vector3 } from 'three'
-import { poseAt, type Pose, type SectionId } from './sections'
+import { type Pose, type SectionId } from './sections'
+import { cameraTarget } from './cameraTarget'
 import { pointerToTilt } from './tilt'
 
 /** Aplica a pose da rolagem à câmera, com amortecimento e leve inclinação pelo mouse. */
-export function CameraRig({ scrollT, poses }: { scrollT: MutableRefObject<number>; poses: Record<SectionId, Pose> }) {
+export function CameraRig({ scrollT, poses, mode = 'scroll', foco }: {
+  scrollT: MutableRefObject<number>; poses: Record<SectionId, Pose>; mode?: 'scroll' | 'foco'; foco: Pose
+}) {
   const camera = useThree((s) => s.camera)
   const mouse = useRef({ x: 0, y: 0 })
   const pos = useRef(new Vector3())
@@ -24,8 +27,9 @@ export function CameraRig({ scrollT, poses }: { scrollT: MutableRefObject<number
   }, [])
 
   useFrame((_, dt) => {
-    const p = poseAt(scrollT.current, poses)
-    goalPos.current.set(p.position[0] + mouse.current.x * 0.3, p.position[1] - mouse.current.y * 0.2, p.position[2])
+    const p = cameraTarget(mode, scrollT.current, poses, foco)
+    const tilt = mode === 'foco' ? 0.08 : 1
+    goalPos.current.set(p.position[0] + mouse.current.x * 0.3 * tilt, p.position[1] - mouse.current.y * 0.2 * tilt, p.position[2])
     goalTarget.current.set(...p.target)
     const k = first.current ? 1 : 1 - Math.exp(-dt * 4)
     first.current = false

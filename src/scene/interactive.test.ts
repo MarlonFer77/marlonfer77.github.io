@@ -1,6 +1,6 @@
 import { Object3D } from 'three'
-import { expect, test } from 'vitest'
-import { sectionForObject } from './interactive'
+import { describe, expect, test } from 'vitest'
+import { resolveSceneClick, sectionForObject } from './interactive'
 
 const named = (name: string, parent?: Object3D) => {
   const o = new Object3D()
@@ -23,4 +23,21 @@ test('mesh filho herda a seção do objeto pai', () => {
 
 test('objeto decorativo não leva a lugar nenhum', () => {
   expect(sectionForObject(named('cadeira'))).toBeNull()
+})
+
+describe('resolveSceneClick', () => {
+  test('clicar no monitor fora do foco entra no foco', () => {
+    expect(resolveSceneClick('monitor_tela', 'scroll')).toEqual({ type: 'enter' })
+  })
+  test('no foco, cliques no monitor ficam com os ícones', () => {
+    expect(resolveSceneClick('monitor_tela', 'foco')).toBeNull()
+  })
+  test('outro objeto leva à seção dele; no foco, sai do foco antes', () => {
+    expect(resolveSceneClick('estante', 'scroll')).toEqual({ type: 'goto', section: 'habilidades', exit: false })
+    expect(resolveSceneClick('celular', 'foco')).toEqual({ type: 'goto', section: 'contato', exit: true })
+  })
+  test('clique no vazio sai do foco; fora do foco não faz nada', () => {
+    expect(resolveSceneClick(null, 'foco')).toEqual({ type: 'exit' })
+    expect(resolveSceneClick(null, 'scroll')).toBeNull()
+  })
 })

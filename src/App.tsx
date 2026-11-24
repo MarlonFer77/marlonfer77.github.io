@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ActiveProjectProvider } from './ui/ActiveProjectContext'
 import { FocusProvider } from './ui/FocusContext'
+import { QualityContext } from './ui/QualityContext'
 import { Nav } from './ui/Nav'
 import { Hero } from './ui/Hero'
 import { ProjectsSection } from './ui/ProjectsSection'
@@ -16,6 +17,7 @@ export default function App() {
   useStackedLayout()
   const [quality] = useState(detectQuality)
   return (
+    <QualityContext.Provider value={quality}>
     <ActiveProjectProvider>
       <FocusProvider>
       <SceneSlot quality={quality} />
@@ -30,5 +32,6 @@ export default function App() {
       <Footer />
       </FocusProvider>
     </ActiveProjectProvider>
+    </QualityContext.Provider>
   )
 }
