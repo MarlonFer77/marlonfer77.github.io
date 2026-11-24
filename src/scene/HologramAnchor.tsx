@@ -12,7 +12,8 @@ export const HOLO_LIFT = 0.64
 export function HologramAnchor({ monitor, portal }: { monitor: Vec3; portal: RefObject<HTMLElement | null> }) {
   const { openId, close, next, prev } = useFocus()
   const project = openId ? projects.find((p) => p.id === openId) : undefined
-  if (!project) return null
+  // O <Html> fica sempre montado: montar/desmontar a raiz própria dele a cada abertura
+  // gera corrida de desmontagem no React 19. Só o conteúdo muda.
   return (
     <Html
       transform
@@ -20,9 +21,9 @@ export function HologramAnchor({ monitor, portal }: { monitor: Vec3; portal: Ref
       position={[monitor[0], monitor[1] + HOLO_LIFT, monitor[2] + 0.05]}
       distanceFactor={0.56}
       zIndexRange={[10, 10]}
-      pointerEvents="auto"
+      pointerEvents={project ? 'auto' : 'none'}
     >
-      <Hologram project={project} onClose={close} onNext={next} onPrev={prev} />
+      {project && <Hologram project={project} onClose={close} onNext={next} onPrev={prev} />}
     </Html>
   )
 }

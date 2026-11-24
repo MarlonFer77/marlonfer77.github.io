@@ -5,7 +5,10 @@ import { RoomWithFallback } from './RoomWithFallback'
 import type { RoomInfo } from './Room'
 import { CameraRig } from './CameraRig'
 import { MonitorScreen } from './MonitorScreen'
-import { HologramAnchor } from './HologramAnchor'
+import { HologramAnchor, HOLO_LIFT } from './HologramAnchor'
+import { HologramFx } from './HologramFx'
+import { showFx } from './showFx'
+import { useQuality } from '../ui/QualityContext'
 import { useStackedLayout } from '../ui/useStackedLayout'
 import { interactiveName, resolveSceneClick, sectionForObject } from './interactive'
 import { useFocus } from '../ui/FocusContext'
@@ -35,6 +38,7 @@ export default function SceneCanvas({ dpr = [1, 2] as number | [number, number] 
   const [room, setRoom] = useState<RoomInfo | null>(null)
   const htmlLayer = useRef<HTMLDivElement>(null)
   const stacked = useStackedLayout()
+  const quality = useQuality()
 
   const focus = useFocus()
   const act = useCallback((c: SceneClick) => {
@@ -70,6 +74,9 @@ export default function SceneCanvas({ dpr = [1, 2] as number | [number, number] 
             </group>
             <MonitorScreen position={room?.monitor} portal={htmlLayer} />
             {!stacked && <HologramAnchor monitor={room?.monitor ?? [0, 1.12, -1.29]} portal={htmlLayer} />}
+            {!stacked && quality === 'full' && (
+              <HologramFx monitor={room?.monitor ?? [0, 1.12, -1.29]} lift={HOLO_LIFT} visible={showFx(focus, stacked, quality)} />
+            )}
           </Suspense>
           <CameraRig scrollT={scrollT} poses={room?.poses ?? PLACEHOLDER_POSES} mode={focus.mode} foco={room?.foco ?? PLACEHOLDER_FOCUS_POSE} monitor={room?.monitor ?? [0, 1.12, -1.29]} />
           <PhoneGlow scrollT={scrollT} />
