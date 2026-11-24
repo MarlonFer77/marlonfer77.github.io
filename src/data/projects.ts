@@ -11,7 +11,7 @@ export const projects: Project[] = [
     solucao: 'Plataforma que lê os dados direto do ERP de RH, aplica regras de negócio documentadas e mostra headcount, turnover, movimentações e histórico em painéis.',
     resultado: 'Carga automática diária em produção, com uma única fonte de números confiável para RH e liderança.',
     stack: ['Angular', 'Node.js', 'Express', 'Oracle', 'PostgreSQL', 'Chart.js'],
-    imagens: ['img/projetos/staff-sync.png'],
+    imagens: ['img/projetos/staff-sync.png', 'img/projetos/people-analytics-2.webp'],
   },
   {
     id: 'comunicacao-interna',
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     solucao: 'Mensageria corporativa em tempo real: conversas, grupos e canais por departamento, comunicados com confirmação de leitura, enquetes e login integrado ao diretório da empresa.',
     resultado: 'Canal oficial com presença online, notificações e trilha de auditoria, sem depender de ferramentas externas.',
     stack: ['Angular', 'Node.js', 'Express', 'Socket.IO', 'PostgreSQL', 'Prisma', 'Docker'],
-    imagens: ['img/projetos/comunicacao-interna.webp'],
+    imagens: ['img/projetos/comunicacao-interna.webp', 'img/projetos/comunicacao-interna-2.webp'],
   },
   {
     id: 'despesas-fornecedores',
@@ -33,7 +33,7 @@ export const projects: Project[] = [
     solucao: 'Painel com consultas otimizadas no Oracle, comparativos por período e uma projeção que aplica reajustes encadeados (IPCA, percentuais) mostrando a memória de cálculo de cada mês.',
     resultado: 'Em produção, com mais de 270 testes automatizados entre back-end e front-end.',
     stack: ['Angular', 'Angular Material', 'Node.js', 'Oracle', 'TypeScript'],
-    imagens: ['img/projetos/despesas-fornecedores.webp'],
+    imagens: ['img/projetos/despesas-fornecedores.webp', 'img/projetos/despesas-fornecedores-2.webp'],
   },
   {
     id: 'portal-intranet',
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     solucao: 'Novo portal com busca, permissões por usuário, navegação por tarefa e entrada única (SSO) em sistemas satélites, como a geração de cartazes de preço.',
     resultado: 'Interface mobile-first que substitui o legado mantendo a integração com o ERP.',
     stack: ['React', 'Next.js', 'TypeScript', 'Prisma', 'Oracle', 'PostgreSQL', 'Tailwind CSS'],
-    imagens: ['img/projetos/portal-intranet.webp'],
+    imagens: ['img/projetos/portal-intranet.webp', 'img/projetos/portal-intranet-2.webp'],
   },
   {
     id: 'uniclan',
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     solucao: 'Rede social de estudos com comunidades (clãs), encontros, agenda e conversas em tempo real, mais painel para universidades e área administrativa.',
     resultado: 'Três aplicações no mesmo projeto, assinatura opcional com Stripe e testes de ponta a ponta com Playwright.',
     stack: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Stripe', 'React Query', 'Playwright'],
-    imagens: ['img/projetos/uniclan.webp'],
+    imagens: ['img/projetos/uniclan.webp', 'img/projetos/uniclan-2.webp'],
   },
   {
     id: 'evaldren',
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     solucao: 'Plataforma web com ficha digital, painel do mestre, combate, mundo e economia, sincronizados em tempo real entre os jogadores.',
     resultado: 'Entregue em 15 fases, com CI no GitHub Actions e backup diário automatizado.',
     stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Node.js', 'Socket.IO', 'Supabase'],
-    imagens: ['img/projetos/evaldren.webp'],
+    imagens: ['img/projetos/evaldren.webp', 'img/projetos/evaldren-2.webp'],
   },
 
   // ——— Outros projetos ———

@@ -28,6 +28,10 @@ describe('projetos', () => {
     }
   })
 
+  test('destaques têm pelo menos 2 imagens para a galeria do holograma', () => {
+    for (const p of projects.filter((p) => p.destaque)) expect(p.imagens.length, p.id).toBeGreaterThanOrEqual(2)
+  })
+
   test('toda imagem citada existe em public/', () => {
     for (const p of projects) {
       for (const img of p.imagens) {

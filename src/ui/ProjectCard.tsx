@@ -16,6 +16,14 @@ export function ProjectCard({ project: p, compact = false }: { project: Project;
       tabIndex={0}
       aria-current={active ? 'true' : undefined}
     >
+      <img
+        className="project__thumb"
+        src={p.imagens[0]}
+        alt={`Tela ilustrativa de ${p.titulo}`}
+        loading="lazy"
+        width={1280}
+        height={800}
+      />
       <header className="project__head">
         <h3 className="project__title">{p.titulo}</h3>
         <span className={`tag tag--${p.tipo}`}>{p.tipo === 'interno' ? 'Projeto corporativo' : 'Projeto pessoal'}</span>

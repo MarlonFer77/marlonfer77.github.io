@@ -43,6 +43,16 @@ describe('projetos', () => {
     expect(within(card).queryAllByRole('link')).toHaveLength(0)
   })
 
+  test('todo cartão mostra a imagem principal do projeto', () => {
+    renderApp()
+    for (const p of projects) {
+      const card = screen.getByText(p.titulo).closest('[data-project]') as HTMLElement
+      const img = within(card).getByRole('img', { name: `Tela ilustrativa de ${p.titulo}` })
+      expect(img).toHaveAttribute('src', p.imagens[0])
+      expect(img).toHaveAttribute('loading', 'lazy')
+    }
+  })
+
   test('clicar num projeto o torna o projeto ativo (mostrado no monitor)', () => {
     renderApp()
     const alvo = projects[2]
