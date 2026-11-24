@@ -45,7 +45,7 @@ export default function SceneCanvas({ dpr = [1, 2] as number | [number, number] 
     if (!c) return
     if (c.type === 'enter') focus.enterFocus()
     else if (c.type === 'exit') focus.exitFocus()
-    else if (c.exit) { focus.exitFocus(); setTimeout(() => scrollToSection(c.section), 0) }
+    else if (c.exit) focus.exitFocus(c.section)
     else scrollToSection(c.section)
   }, [focus])
   const onClick = useCallback((e: ThreeEvent<MouseEvent>) => {
@@ -56,10 +56,8 @@ export default function SceneCanvas({ dpr = [1, 2] as number | [number, number] 
 
   return (
     <div className="scene" style={{ cursor: hover ? 'pointer' : undefined }}>
-      <Canvas dpr={dpr} camera={{ fov: 42, near: 0.05, far: 50 }} onPointerMissed={(e) => {
+      <Canvas dpr={dpr} camera={{ fov: 42, near: 0.05, far: 50 }} onPointerMissed={() => {
         setHover(false)
-        // cliques nos ícones/holograma (HTML dentro da cena) não contam como "vazio"
-        if ((e.target as Element | null)?.closest?.('.desktop, .hologram')) return
         act(resolveSceneClick(null, focus.mode))
       }}>
           <color attach="background" args={['#0f1626']} />
