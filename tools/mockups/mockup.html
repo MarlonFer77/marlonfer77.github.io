@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Tela fictícia</title>
+<!-- Telas ilustrativas com dados INVENTADOS. Nenhuma tela real de sistema interno. -->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  #root { height: 800px; }
+  body { width: 1280px; height: 800px; overflow: hidden; font: 15px/1.4 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--fg); }
+  .app { display: grid; grid-template-columns: 220px 1fr; height: 100%; }
+  aside { background: var(--side); padding: 22px 16px; display: grid; align-content: start; gap: 6px; }
+  .logo { font-weight: 800; font-size: 18px; margin-bottom: 18px; color: var(--accent); }
+  .nav { padding: 9px 12px; border-radius: 8px; color: var(--muted); }
+  .nav.on { background: var(--accentSoft); color: var(--fg); font-weight: 600; }
+  main { padding: 26px 30px; display: grid; gap: 18px; align-content: start; overflow: hidden; }
+  h1 { font-size: 24px; }
+  .sub { color: var(--muted); margin-top: -12px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .card { background: var(--card); border-radius: 12px; padding: 18px 20px; border: 1px solid var(--line); }
+  .kpi b { display: block; font-size: 26px; margin-top: 4px; }
+  .kpi small { color: var(--muted); }
+  .kpi i { font-style: normal; font-size: 12px; color: var(--good); }
+  .row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 14px; }
+  .bars { display: flex; align-items: flex-end; gap: 10px; height: 380px; padding-top: 14px; }
+  .bars div { flex: 1; background: var(--accent); border-radius: 6px 6px 0 0; opacity: .85; }
+  .bars div:nth-child(even) { opacity: .55; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; color: var(--muted); font-weight: 600; padding: 8px 6px; border-bottom: 1px solid var(--line); }
+  td { padding: 16px 6px; border-bottom: 1px solid var(--line); }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 12px; background: var(--accentSoft); color: var(--accent); }
+  .pill.warn { background: #f59e0b22; color: #d97706; }
+  .pill.ok { background: #10b98122; color: #059669; }
+  .list div { display: flex; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  /* chat */
+  .chat { display: grid; grid-template-columns: 260px 1fr; gap: 0; height: 100%; }
+  .convs { border-right: 1px solid var(--line); padding: 18px 12px; display: grid; gap: 4px; align-content: start; }
+  .conv { padding: 10px; border-radius: 8px; display: grid; gap: 2px; }
+  .conv.on { background: var(--accentSoft); }
+  .conv small { color: var(--muted); }
+  .msgs { padding: 22px 28px; display: grid; gap: 14px; align-content: start; }
+  .msg { max-width: 60%; padding: 10px 14px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); }
+  .msg.me { justify-self: end; background: var(--accent); color: white; border: 0; }
+  .msg small { display: block; font-size: 12px; opacity: .7; margin-bottom: 2px; font-weight: 600; }
+  .composer { margin-top: 12px; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; color: var(--muted); background: var(--card); }
+  /* jogo */
+  .game { height: 100%; display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, #3b1f5e, #120a1f); color: #fff; }
+  .arena { display: grid; grid-template-columns: 1fr auto 1fr; gap: 60px; align-items: center; }
+  .fighter { width: 180px; height: 220px; border-radius: 24px; display: grid; place-items: center; font-size: 80px; background: #ffffff10; border: 2px solid #ffffff30; }
+  .hp { height: 12px; border-radius: 6px; background: #ffffff22; margin-top: 10px; overflow: hidden; }
+  .hp div { height: 100%; background: #22c55e; }
+  .combo { font-size: 30px; font-weight: 800; text-align: center; color: #fdba74; }
+  .skills { display: flex; gap: 12px; margin-top: 40px; justify-content: center; }
+  .skills span { width: 70px; height: 70px; border-radius: 16px; display: grid; place-items: center; font-size: 34px; background: #ffffff14; border: 2px solid #ffffff30; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const THEMES = {
+  azul:   { bg: '#f4f6fb', side: '#ffffff', card: '#ffffff', fg: '#1b2333', muted: '#6b7488', line: '#e6e9f0', accent: '#3867d6', accentSoft: '#3867d61a', good: '#059669' },
+  verde:  { bg: '#f3f7f5', side: '#0f3d2e', card: '#ffffff', fg: '#16261f', muted: '#5f7068', line: '#e1e9e5', accent: '#14805e', accentSoft: '#14805e1f', good: '#059669' },
+  escuro: { bg: '#11151d', side: '#0b0e14', card: '#181e29', fg: '#e8ecf3', muted: '#8b96a8', line: '#262f3e', accent: '#7c9cff', accentSoft: '#7c9cff22', good: '#34d399' },
+  roxo:   { bg: '#f7f5fc', side: '#ffffff', card: '#ffffff', fg: '#221b33', muted: '#706887', line: '#ebe6f5', accent: '#7c3aed', accentSoft: '#7c3aed1a', good: '#059669' },
+  laranja:{ bg: '#fbf7f3', side: '#ffffff', card: '#ffffff', fg: '#2a2018', muted: '#7a6c60', line: '#efe7df', accent: '#ea580c', accentSoft: '#ea580c1a', good: '#059669' },
+}
+
+const S = {
+  'people-analytics': { tema: 'azul', app: 'Insight RH', menu: ['Visão geral', 'Headcount', 'Turnover', 'Movimentações', 'Histórico'], titulo: 'Headcount real × orçado', sub: 'Todas as unidades · março',
+    kpis: [['Headcount real', '1.284', '+12 no mês'], ['Orçado', '1.310', '98% atingido'], ['Turnover', '2,1%', '-0,4 p.p.'], ['Admissões', '46', 'no mês']],
+    bars: [62, 70, 66, 74, 71, 78, 80, 76, 83, 85, 82, 88], tabela: [['Unidade', 'Real', 'Orçado', 'Situação'], ['Unidade Norte', '214', '220', 'warn:Abaixo'], ['Unidade Centro', '188', '185', 'ok:No alvo'], ['Centro de distribuição', '342', '340', 'ok:No alvo'], ['Escritório', '96', '102', 'warn:Abaixo']] },
+  'despesas-fornecedores': { tema: 'verde', app: 'Despesas', menu: ['Painel', 'Fornecedores', 'Projeção', 'Reajustes', 'Relatórios'], titulo: 'Despesas por fornecedor', sub: 'Jan a dez · valores fictícios',
+    kpis: [['Total no ano', 'R$ 4,82 mi', '+3,1% a.a.'], ['Fornecedores', '137', 'ativos'], ['Maior despesa', 'Logística', '28% do total'], ['Projeção dez', 'R$ 512 mil', 'com IPCA']],
+    bars: [40, 44, 43, 47, 52, 50, 55, 58, 54, 60, 63, 66], tabela: [['Fornecedor', 'Categoria', 'Mensal', 'Reajuste'], ['Transportes Alfa', 'Logística', 'R$ 98.400', 'pill:IPCA'], ['Limpeza Beta', 'Serviços', 'R$ 31.200', 'pill:+5%'], ['Energia Gama', 'Utilidades', 'R$ 74.900', 'pill:IPCA'], ['Segurança Delta', 'Serviços', 'R$ 52.300', 'pill:+8%']] },
+  'portal-intranet': { tema: 'laranja', app: 'Portal', menu: ['Início', 'Meus sistemas', 'Lojas', 'Compras', 'RH'], titulo: 'Bom dia, Ana', sub: 'Encontre um sistema ou comece a digitar',
+    kpis: [['Cartazes de preço', 'Gerar', 'mais usado'], ['Conciliação', 'Abrir', 'financeiro'], ['Validades', 'Abrir', 'lojas'], ['Pedidos', 'Abrir', 'compras']],
+    lista: [['Cartazes de preço', 'Lojas · usado hoje'], ['Inventário de TI', 'TI · ontem'], ['Escalas', 'RH · seg'], ['Relatório de vendas', 'Comercial · sex']], bars: [30, 50, 45, 65, 60, 72, 68] },
+  'gestao-operacional': { tema: 'escuro', app: 'Operações', menu: ['Demandas', 'Rotinas', 'Planos de ação', 'Aprovações', 'Indicadores'], titulo: 'Demandas da semana', sub: 'Equipe de operações',
+    kpis: [['Abertas', '38', '12 novas'], ['No prazo (SLA)', '91%', '+4 p.p.'], ['Aguardando aprovação', '7', ''], ['Concluídas', '64', 'na semana']],
+    bars: [20, 34, 28, 40, 36, 44, 39], tabela: [['Demanda', 'Responsável', 'Prazo', 'Status'], ['Revisar escala de turno', 'Carla M.', 'hoje', 'warn:Atenção'], ['Checklist de abertura', 'Rui P.', 'amanhã', 'ok:Em dia'], ['Plano contra perdas', 'Lia S.', 'sex', 'pill:Aprovação'], ['Treinamento de caixa', 'Téo A.', 'seg', 'ok:Em dia']] },
+  'balancas': { tema: 'azul', app: 'Balanças', menu: ['Painel', 'Balanças', 'Ordens de serviço', 'Peças', 'Fornecedores'], titulo: 'Reparo × substituição', sub: 'Balança BL-0412 · Loja 07',
+    kpis: [['Balanças ativas', '412', ''], ['Em manutenção', '9', '3 urgentes'], ['Custo no ano', 'R$ 86 mil', '-12%'], ['Garantias ativas', '58', '']],
+    bars: [55, 48, 60, 40, 35, 30, 28], tabela: [['Item', 'Reparo', 'Nova', 'Indicação'], ['Célula de carga', 'R$ 680', 'R$ 2.900', 'ok:Reparar'], ['Placa principal', 'R$ 1.950', 'R$ 2.900', 'warn:Substituir'], ['Display', 'R$ 240', 'R$ 2.900', 'ok:Reparar'], ['Impressora', 'R$ 520', 'R$ 2.900', 'ok:Reparar']] },
+  'portal-rh': { tema: 'roxo', app: 'Portal RH', menu: ['Absenteísmo', 'Advertências', 'Uniformes', 'Colaboradores', 'Cargas'], titulo: 'Painel de advertências', sub: 'Filtros: reincidentes · mínimo 2 registros',
+    kpis: [['Registros no ano', '4.237', ''], ['Pessoas', '2.093', ''], ['Reincidentes', '184', '-9%'], ['Funções', '58', '']],
+    bars: [44, 38, 41, 35, 33, 30, 29, 27], tabela: [['Colaborador', 'Função', 'Motivo', 'Registros'], ['João S.', 'Operador de loja', 'Atraso', 'pill:3'], ['Marta L.', 'Repositora', 'Falta', 'pill:2'], ['Paulo R.', 'Conferente', 'Atraso', 'pill:2'], ['Bia N.', 'Caixa', 'Uniforme', 'pill:2']] },
+  'inventario-ti': { tema: 'verde', app: 'Inventário TI', menu: ['Equipamentos', 'Envios', 'Motorista', 'O.S.', 'Etiquetas'], titulo: 'Envios em trânsito', sub: 'Lojas ↔ matriz',
+    kpis: [['Equipamentos', '1.906', ''], ['Em trânsito', '23', ''], ['Assinaturas hoje', '11', ''], ['O.S. abertas', '14', '']],
+    bars: [12, 18, 15, 22, 19, 25, 21], tabela: [['Equipamento', 'Série', 'Destino', 'Status'], ['Notebook', 'NB-20931', 'Matriz', 'pill:Em trânsito'], ['Impressora térmica', 'IT-5521', 'Loja 12', 'ok:Recebido'], ['Leitor de código', 'LC-1180', 'Loja 03', 'pill:Em trânsito'], ['Monitor 24"', 'MN-7702', 'Matriz', 'warn:Aguardando']] },
+  'ferramentas-rh': { tema: 'azul', app: 'Fórmulas', menu: ['Início', 'Alteração salarial', 'Validar arquivo'], titulo: 'Alteração salarial em massa', sub: 'planilha_reajuste.xlsx · 312 linhas',
+    kpis: [['Linhas lidas', '312', ''], ['Válidas', '309', ''], ['Com erro', '3', 'ver abaixo'], ['Fórmula', 'Gerada', 'copiar']],
+    lista: [['Linha 48: chapa sem valor', 'corrigir'], ['Linha 131: valor negativo', 'corrigir'], ['Linha 207: chapa duplicada', 'corrigir'], ['Arquivo posicional: 700 caracteres', 'ok']], bars: [80, 82, 79, 85] },
+  'aniversariantes': { tema: 'laranja', app: 'Aniversariantes', menu: ['Gerar arte', 'Planilha', 'Modelo'], titulo: 'Aniversariantes de setembro', sub: '9 pessoas · arte gerada',
+    kpis: [['Pessoas', '9', ''], ['Fonte', '34 pt', 'única para a lista'], ['Truncados', '0', ''], ['Arquivo', 'PNG', '1080×1350']],
+    lista: [['03 · Ana Lima', ''], ['07 · Bruno Reis', ''], ['12 · Carla Dias', ''], ['19 · Diego Melo', '']], bars: [20, 40, 30, 50] },
+  'uniclan': { tema: 'roxo', app: 'UniClã', menu: ['Início', 'Meus clãs', 'Encontros', 'Agenda', 'Conversas'], titulo: 'Clã de Cálculo I', sub: '128 membros · 4 instituições',
+    kpis: [['Próximo encontro', 'Qui 19h', 'Biblioteca'], ['Materiais', '42', ''], ['Membros online', '17', ''], ['Sua sequência', '6 dias', '']],
+    lista: [['Lista 3 resolvida (PDF)', 'há 2 h'], ['Encontro: revisão para a P1', 'qui'], ['Dúvida: limites laterais', '12 respostas'], ['Resumo de derivadas', 'novo']], bars: [10, 25, 20, 35, 30, 45, 50] },
+  'evaldren': { tema: 'escuro', app: 'Evaldren', menu: ['Campanha', 'Fichas', 'Combate', 'Mundo', 'Economia'], titulo: 'Combate: Ruínas de Vel Kar', sub: 'Rodada 3 · iniciativa',
+    kpis: [['Kael (guerreiro)', '34/42', 'PV'], ['Lyra (maga)', '18/24', 'PV'], ['Goblin chefe', '9/30', 'PV'], ['Iniciativa', 'Lyra', 'agora']],
+    tabela: [['Ordem', 'Personagem', 'CA', 'Condição'], ['1', 'Lyra', '13', 'ok:Normal'], ['2', 'Goblin chefe', '15', 'warn:Caído'], ['3', 'Kael', '18', 'ok:Normal'], ['4', 'Lobo', '13', 'pill:Assustado']], bars: [70, 45, 30, 90] },
+  'net-pix': { tema: 'verde', app: 'NET PIX', menu: ['Planos', 'Pagamentos', 'Clientes', 'Sessões'], titulo: 'Planos de acesso', sub: 'Wi-Fi do quiosque',
+    kpis: [['1 hora', 'R$ 3', 'PIX'], ['1 dia', 'R$ 10', 'PIX'], ['Clientes hoje', '27', ''], ['Sessões ativas', '9', '']],
+    tabela: [['Cliente', 'Plano', 'Pagamento', 'Tempo'], ['Dispositivo A3', '1 dia', 'ok:Pago', '14 h'], ['Dispositivo 7F', '1 hora', 'ok:Pago', '32 min'], ['Dispositivo C2', '1 hora', 'warn:Pendente', '-'], ['Dispositivo 9B', '1 dia', 'ok:Pago', '6 h']], bars: [5, 12, 9, 20, 18, 27] },
+  'monitor-jobs': { tema: 'escuro', app: 'Jobs', menu: ['Agora', 'Histórico', 'Alertas'], titulo: 'Processos agendados', sub: 'Atualizado há 30 s',
+    kpis: [['Em execução', '4', ''], ['Concluídos hoje', '61', ''], ['Com falha', '1', 'alerta enviado'], ['Atrasados', '0', '']],
+    tabela: [['Processo', 'Início', 'Duração', 'Status'], ['Cálculo da folha', '02:00', '41 min', 'ok:Concluído'], ['Integração contábil', '03:10', '12 min', 'ok:Concluído'], ['Exportação de ponto', '04:00', '-', 'warn:Falhou'], ['Férias programadas', '05:00', '3 min', 'ok:Concluído']], bars: [60, 61, 59, 62, 61] },
+'people-analytics-2': { tema: 'azul', app: 'Insight RH', menu: ['Visão geral', 'Headcount', 'Turnover', 'Movimentações', 'Histórico'], titulo: 'Turnover por área', sub: 'Últimos 12 meses',
+    kpis: [['Turnover anual', '18,4%', '-2,1 p.p.'], ['Desligamentos', '231', ''], ['Voluntários', '62%', ''], ['Tempo médio de casa', '3,2 anos', '']],
+    bars: [22, 19, 24, 18, 17, 16, 15, 17, 14, 13, 12, 12], tabela: [['Área', 'Turnover', 'Meta', 'Situação'], ['Operação de loja', '24%', '20%', 'warn:Acima'], ['Logística', '15%', '18%', 'ok:Abaixo'], ['Administrativo', '8%', '10%', 'ok:Abaixo'], ['Comercial', '12%', '12%', 'ok:Na meta']] },
+  'comunicacao-interna-2': { tema: 'azul', app: 'Conecta', menu: ['Conversas', 'Canais', 'Comunicados', 'Enquetes'], titulo: 'Comunicados', sub: 'Confirmação de leitura por unidade',
+    kpis: [['Publicados no mês', '14', ''], ['Leitura média', '87%', '+6 p.p.'], ['Enquetes abertas', '2', ''], ['Pessoas online', '312', '']],
+    bars: [70, 74, 81, 79, 85, 88, 87], tabela: [['Comunicado', 'Publicado', 'Leitura', 'Status'], ['Horário de feriado', 'hoje', '64%', 'pill:Em andamento'], ['Nova política de férias', 'seg', '91%', 'ok:Concluído'], ['Treinamento obrigatório', 'sex', '83%', 'warn:Pendentes'], ['Campanha de vacinação', 'qua', '95%', 'ok:Concluído']] },
+  'despesas-fornecedores-2': { tema: 'verde', app: 'Despesas', menu: ['Painel', 'Fornecedores', 'Projeção', 'Reajustes', 'Relatórios'], titulo: 'Memória de cálculo · Transportes Alfa', sub: 'Projeção de janeiro',
+    kpis: [['Base sazonal', 'R$ 50.000', ''], ['IPCA (01/2027)', '+ 4,5%', 'R$ 52.250'], ['Contratual (01/2027)', '+ 3,0%', 'R$ 53.818'], ['Valor projetado', 'R$ 53.818', 'final']],
+    lista: [['Base sazonal (média de 3 anos)', 'R$ 50.000,00'], ['Reajuste IPCA +4,5%', 'R$ 52.250,00'], ['Reajuste contratual +3%', 'R$ 53.817,50'], ['Valor projetado final', 'R$ 53.817,50']], bars: [50, 52, 54] },
+  'portal-intranet-2': { tema: 'laranja', app: 'Portal', menu: ['Início', 'Meus sistemas', 'Lojas', 'Compras', 'RH'], titulo: 'Busca: "cartaz"', sub: '3 sistemas encontrados',
+    kpis: [['Cartazes de preço', 'Abrir', 'Lojas'], ['Cartaz de ofertas', 'Abrir', 'Marketing'], ['Histórico de cartazes', 'Abrir', 'Lojas'], ['Permissões', 'Ver', 'Admin']],
+    lista: [['Entrada única (SSO) ativa', 'ok'], ['Seu perfil: Loja', 'permissões'], ['Usado no celular', '78% dos acessos'], ['Favoritos', '4 sistemas']], bars: [40, 55, 78] },
+  'uniclan-2': { tema: 'roxo', app: 'UniClã', menu: ['Início', 'Meus clãs', 'Encontros', 'Agenda', 'Conversas'], titulo: 'Agenda da semana', sub: '3 encontros confirmados',
+    kpis: [['Seg 19h', 'Cálculo I', 'online'], ['Qua 18h', 'Física', 'biblioteca'], ['Qui 19h', 'Revisão P1', 'sala 204'], ['Sáb 10h', 'Grupo livre', 'café']],
+    tabela: [['Encontro', 'Clã', 'Vagas', 'Status'], ['Revisão para a P1', 'Cálculo I', '4/12', 'ok:Confirmado'], ['Lista de exercícios 4', 'Física', '7/10', 'ok:Confirmado'], ['Maratona de estudos', 'Geral', '18/20', 'warn:Últimas vagas'], ['Monitoria', 'Álgebra', '2/8', 'pill:Aberto']], bars: [3, 5, 4, 6] },
+  'evaldren-2': { tema: 'escuro', app: 'Evaldren', menu: ['Campanha', 'Fichas', 'Combate', 'Mundo', 'Economia'], titulo: 'Ficha: Lyra, maga elfa', sub: 'Nível 5 · Escola de Evocação',
+    kpis: [['Força', '8', '-1'], ['Destreza', '14', '+2'], ['Inteligência', '18', '+4'], ['Sabedoria', '12', '+1']],
+    tabela: [['Magia', 'Nível', 'Alcance', 'Preparada'], ['Bola de fogo', '3', '45 m', 'ok:Sim'], ['Escudo arcano', '1', 'pessoal', 'ok:Sim'], ['Mísseis mágicos', '1', '36 m', 'ok:Sim'], ['Voo', '3', 'toque', 'warn:Não']], bars: [8, 14, 18, 12] },
+}
+
+const CHAT = { tema: 'azul', app: 'Conecta', menu: ['Conversas', 'Canais', 'Comunicados', 'Enquetes'],
+  convs: [['# avisos-gerais', 'Comunicado: horário de feriado'], ['# compras', 'Pedido aprovado'], ['Equipe de TI', 'Marcos: subiu a versão nova'], ['Ana Souza', 'Combinado, até amanhã!']],
+  msgs: [['Marcos', 'Pessoal, a nova versão do sistema de pedidos já está no ar.'], ['me', 'Ótimo! Alguma mudança para as lojas?'], ['Marcos', 'Só a tela de conferência, ficou mais rápida no celular.'], ['Júlia', '👍 Vou avisar as gerentes no canal de lojas.']] }
+
+const pill = (v) => { const [k, t] = String(v).includes(':') ? v.split(':') : [null, v]; return k ? `<span class="pill ${k === 'pill' ? '' : k}">${t}</span>` : v }
+const id = new URLSearchParams(location.search).get('id')
+const root = document.getElementById('root')
+
+function theme(name) { for (const [k, v] of Object.entries(THEMES[name])) document.body.style.setProperty('--' + k, v) }
+
+if (id === 'comunicacao-interna') {
+  theme(CHAT.tema)
+  root.innerHTML = `<div class="app"><aside><div class="logo">${CHAT.app}</div>${CHAT.menu.map((m, i) => `<div class="nav ${i ? '' : 'on'}">${m}</div>`).join('')}</aside>
+  <div class="chat"><div class="convs">${CHAT.convs.map((c, i) => `<div class="conv ${i === 2 ? 'on' : ''}"><b>${c[0]}</b><small>${c[1]}</small></div>`).join('')}</div>
+  <div class="msgs"><h1>Equipe de TI</h1><p class="sub" style="margin-top:-8px">5 membros · 3 online</p>${CHAT.msgs.map(([who, t]) => `<div class="msg ${who === 'me' ? 'me' : ''}">${who === 'me' ? '' : `<small>${who}</small>`}${t}</div>`).join('')}<div class="composer">Escreva uma mensagem…</div></div></div></div>`
+} else if (id === 'jogo-elementos') {
+  root.innerHTML = `<div class="game"><div><div class="arena"><div><div class="fighter">🧙</div><div class="hp"><div style="width:72%"></div></div></div><div class="combo">🔥 + 🌪️<br>Tempestade Ígnea!</div><div><div class="fighter">🧝</div><div class="hp"><div style="width:38%;background:#ef4444"></div></div></div></div><div class="skills"><span>🔥</span><span>💧</span><span>🌪️</span><span>⚡</span><span>🪨</span></div></div></div>`
+} else if (id === 'vila-magica') {
+  root.innerHTML = `<div class="game" style="background:radial-gradient(circle at 50% 30%,#ffd6ec,#b9a7ff)"><div style="text-align:center;color:#4a2a6a"><div style="font-size:120px">🏡🎈🦋</div><div style="font-size:40px;font-weight:800;margin-top:10px">A Vila Mágica das Surpresas</div><div style="font-size:22px;margin-top:8px">Brincadeiras concluídas: 5 de 8 · 🎁 abra o presente nº 5!</div><div class="skills"><span style="background:#fff8">🎨</span><span style="background:#fff8">🔷</span><span style="background:#fff8">🎵</span><span style="background:#fff8">🌸</span></div></div></div>`
+} else if (id === 'animacao-2d') {
+  root.innerHTML = `<div class="game" style="background:#1d1d24"><div style="display:grid;grid-template-columns:repeat(3,320px);gap:18px">${['Cena 1 · banco', 'Cena 2 · terreiro', 'Cena 3 · caixa'].map((c, i) => `<div><div style="background:${['#f6c453', '#7cc4f2', '#f28a8a'][i]};height:200px;border:5px solid #111;border-radius:10px;display:grid;place-items:center;font-size:70px">${['😮', '🥁', '🛒'][i]}</div><div style="color:#ddd;margin-top:10px;font-size:18px">${c}</div></div>`).join('')}</div></div>`
+} else {
+  const s = S[id]
+  theme(s.tema)
+  const max = Math.max(...s.bars)
+  const right = s.lista
+    ? `<div class="card list"><b>Recentes</b>${s.lista.map(([a, b]) => `<div><span>${a}</span><small class="sub" style="margin:0">${b}</small></div>`).join('')}</div>`
+    : `<div class="card"><b>Por mês</b><div class="bars">${s.bars.map((b) => `<div style="height:${(b / max) * 100}%"></div>`).join('')}</div></div>`
+  const left = s.tabela
+    ? `<div class="card"><table><tr>${s.tabela[0].map((h) => `<th>${h}</th>`).join('')}</tr>${s.tabela.slice(1).map((r) => `<tr>${r.map((c) => `<td>${pill(c)}</td>`).join('')}</tr>`).join('')}</table></div>`
+    : `<div class="card"><b>Evolução</b><div class="bars">${s.bars.map((b) => `<div style="height:${(b / max) * 100}%"></div>`).join('')}</div></div>`
+  root.innerHTML = `<div class="app"><aside><div class="logo">${s.app}</div>${s.menu.map((m, i) => `<div class="nav ${i === 1 ? 'on' : ''}">${m}</div>`).join('')}</aside>
+  <main><h1>${s.titulo}</h1><p class="sub">${s.sub}</p>
+  <div class="kpis">${s.kpis.map(([l, v, d]) => `<div class="card kpi"><small>${l}</small><b>${v}</b><i>${d}</i></div>`).join('')}</div>
+  <div class="row">${left}${right}</div></main></div>`
+}
+</script>
+</body>
+</html>
