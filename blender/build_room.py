@@ -23,7 +23,7 @@ POSES = {  # mesmas poses da sala provisória (three.js)
     'contato': ((0.05, 1.12, -0.15), (0.38, 0.8, -0.85)),
 }
 
-FOCO = ((0, 1.32, 0.55), (0, 1.32, -1.3))  # modo foco: de frente para o monitor
+FOCO = ((0, 1.45, 0.85), (0, 1.45, -1.3))  # modo foco: de frente para o monitor
 
 
 def P(x, y, z):

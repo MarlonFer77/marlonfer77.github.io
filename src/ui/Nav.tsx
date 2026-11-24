@@ -9,13 +9,13 @@ const LINKS: { id: SectionId; label: string }[] = [
   { id: 'contato', label: 'Contato' },
 ]
 
-export function Nav() {
+export function Nav({ inert = false }: { inert?: boolean }) {
   const go = (id: SectionId) => (e: MouseEvent) => {
     e.preventDefault()
     scrollToSection(id)
   }
   return (
-    <header className="nav">
+    <header className="nav" inert={inert}>
       <a className="nav__brand" href="#inicio" onClick={go('inicio')}>Marlon Ferreira</a>
       <nav aria-label="Seções">
         <ul className="nav__links">

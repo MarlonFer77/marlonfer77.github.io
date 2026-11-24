@@ -19,7 +19,7 @@ export function MonitorScreen({ position = [0, 1.12, -1.29], portal }: {
   const { mode, openId, open } = useFocus()
   const interactive = mode === 'foco'
   return (
-    <Html transform portal={portal as RefObject<HTMLElement>} position={position} distanceFactor={0.5} pointerEvents={interactive ? 'auto' : 'none'} zIndexRange={[0, 0]}>
+    <Html transform portal={portal as RefObject<HTMLElement>} position={position} distanceFactor={0.78} pointerEvents={interactive ? 'auto' : 'none'} zIndexRange={[0, 0]}>
       <div className={`desktop ${interactive ? 'desktop--live' : ''}`} aria-hidden={!interactive}>
         {projects.map((p) => (
           <button

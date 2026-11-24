@@ -205,3 +205,66 @@ html.is-focus { overflow: hidden; }
 .btn--holo:hover { background: rgba(60, 140, 255, 0.34); }
 .scene__html { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .scene__html > div { pointer-events: none; }
+
+/* ——— Modo foco ——— */
+.content, .nav, .footer { transition: opacity 0.3s ease; }
+html.is-focus .content, html.is-focus .nav, html.is-focus .footer { opacity: 0; }
+.focus-back {
+  position: fixed; top: 16px; left: 16px; z-index: 20; cursor: pointer;
+  font: 700 0.95rem var(--font-body); color: #dff0ff; padding: 10px 18px; border-radius: var(--radius-s);
+  background: rgba(15, 22, 38, 0.8); border: 1px solid rgba(140, 200, 255, 0.65);
+}
+.focus-back:hover { background: rgba(40, 70, 120, 0.8); }
+.focus-hint { position: fixed; top: 22px; left: 50%; transform: translateX(-50%); z-index: 20; color: #b9d6ff; font-size: 0.95rem; pointer-events: none; }
+html.is-focus.layout--stacked .scene { position: fixed; inset: 0; height: 100vh; }
+
+/* ——— Holograma clássico ——— */
+.hologram {
+  --holo-line: rgba(140, 200, 255, 0.65);
+  width: 1040px; padding: 22px 26px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 26px; row-gap: 10px; color: #dff0ff;
+  font: 16px/1.5 var(--font-body); border: 1px solid var(--holo-line); border-radius: 12px;
+  background:
+    repeating-linear-gradient(to bottom, rgba(127, 178, 255, 0.07) 0 2px, transparent 2px 4px),
+    linear-gradient(160deg, rgba(60, 140, 255, 0.28), rgba(40, 90, 200, 0.16)),
+    rgba(6, 14, 30, 0.55);
+  animation: holo-rise 0.9s ease-out both, holo-flicker 4s infinite 1s;
+  transform-origin: bottom center;
+}
+@keyframes holo-rise { from { opacity: 0; transform: translateY(80px) scaleY(0.2); } }
+@keyframes holo-flicker { 0%, 96%, 100% { opacity: 1; } 97% { opacity: 0.78; } 98% { opacity: 1; } 99% { opacity: 0.86; } }
+@media (prefers-reduced-motion: reduce) { .hologram { animation: none; } }
+.hologram__top, .hologram__tag, .hologram__bottom { grid-column: 1 / -1; }
+.hologram__gallery { grid-row: span 3; align-self: start; }
+.hologram__top { display: flex; justify-content: space-between; align-items: start; gap: 16px; }
+.hologram__title { font-size: 1.6rem; color: #eef7ff; }
+.hologram__tag { font-size: 0.85rem; color: #9fd0ff; margin-top: -6px; }
+.hologram button, .hologram a { font: 700 0.95rem var(--font-body); color: #9fd0ff; background: none; border: 0; cursor: pointer; padding: 6px 4px; text-decoration: none; }
+.hologram button:hover, .hologram a:hover { color: #ffffff; }
+.hologram__close { border: 1px solid var(--holo-line) !important; border-radius: 6px; padding: 6px 12px !important; }
+.hologram__gallery { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+.hologram__shot { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border-radius: 6px; border: 1px solid rgba(160, 210, 255, 0.4); filter: saturate(0.75) brightness(1.05); }
+.hologram__thumbs { display: grid; gap: 8px; align-content: start; width: 110px; }
+.hologram__thumb { padding: 0 !important; border-radius: 4px; outline: 1px solid rgba(160, 210, 255, 0.35); opacity: 0.65; }
+.hologram__thumb[aria-pressed='true'] { opacity: 1; outline: 2px solid #9fd0ff; }
+.hologram__thumb img { width: 110px; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border-radius: 4px; }
+.hologram__story { display: grid; grid-template-columns: 6.5rem 1fr; gap: 4px 14px; margin: 0; }
+.hologram__story dt { color: #9fc4ee; }
+.hologram__story dd { margin: 0; }
+.hologram__stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.hologram__stack li { font-size: 0.82rem; padding: 2px 10px; border-radius: 99px; border: 1px solid rgba(160, 210, 255, 0.55); color: #cfe6ff; }
+.hologram__bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid rgba(160, 210, 255, 0.25); padding-top: 8px; }
+
+/* celular: painel fixo na metade de baixo */
+.hologram--sheet {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; width: auto; max-height: 58vh; overflow-y: auto;
+  border-radius: 14px 14px 0 0; padding: 18px 16px 24px; font-size: 15px;
+  animation: holo-rise 0.5s ease-out both;
+}
+.hologram--sheet { grid-template-columns: 1fr; }
+.hologram--sheet .hologram__gallery { grid-template-columns: 1fr; grid-row: auto; }
+.hologram--sheet .hologram__thumbs { grid-auto-flow: column; width: auto; justify-content: start; }
+.hologram--sheet .hologram__thumb img { width: 88px; }
+.hologram--sheet .hologram__story { grid-template-columns: 1fr; gap: 0; }
+.hologram--sheet .hologram__story dd { margin-bottom: 8px; }
+.hologram--sheet .hologram__title { font-size: 1.25rem; }
+@media (max-width: 480px) { .focus-hint { top: auto; bottom: 20px; width: 90%; text-align: center; } }

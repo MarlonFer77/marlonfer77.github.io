@@ -20,7 +20,7 @@ export const PLACEHOLDER_POSES: Record<SectionId, Pose> = {
 }
 
 /** Modo foco: de frente para o monitor, com espaço acima para o holograma. */
-export const PLACEHOLDER_FOCUS_POSE: Pose = { position: [0, 1.32, 0.55], target: [0, 1.32, -1.3] }
+export const PLACEHOLDER_FOCUS_POSE: Pose = { position: [0, 1.45, 0.85], target: [0, 1.45, -1.3] }
 
 const Box = ({ args, position, color, name, children }: {
   args: [number, number, number]; position: [number, number, number]; color: string; name?: string; children?: ReactNode
