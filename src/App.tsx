@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ActiveProjectProvider } from './ui/ActiveProjectContext'
+import { FocusProvider } from './ui/FocusContext'
 import { Nav } from './ui/Nav'
 import { Hero } from './ui/Hero'
 import { ProjectsSection } from './ui/ProjectsSection'
@@ -16,6 +17,7 @@ export default function App() {
   const [quality] = useState(detectQuality)
   return (
     <ActiveProjectProvider>
+      <FocusProvider>
       <SceneSlot quality={quality} />
       <Nav />
       <main className="content">
@@ -26,6 +28,7 @@ export default function App() {
         <ContactSection />
       </main>
       <Footer />
+      </FocusProvider>
     </ActiveProjectProvider>
   )
 }
